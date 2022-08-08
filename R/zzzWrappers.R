@@ -112,6 +112,7 @@ createJaspTable <- function( title="",       data = NULL, colNames = NULL,     c
 createJaspHtml <- function( text = "",    elementType = "p",         maxWidth = "15cm",   class = "",    dependencies = NULL,         title = "hide me", position = NULL)
   return(jaspHtmlR$new(   text = text,  elementType = elementType, maxWidth = maxWidth, class = class, dependencies = dependencies, title = title,     position = position))
 
+#' @export
 createJaspReport <- function( text = "",    report = FALSE, dependencies = NULL,         title = "hide me", position = NULL)
     return(jaspReportR$new(   text = text,  report = report, dependencies = dependencies, title = title,     position = position))
 
