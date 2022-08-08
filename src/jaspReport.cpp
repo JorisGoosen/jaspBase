@@ -9,7 +9,9 @@ std::string jaspReport::dataToString(std::string prefix) const
 std::string jaspReport::toHtml() const
 {
 	//we add two classes, one to indicate it is a jaspReport (and to easily set display:none/block and jaspReportDo(nt) to indicate whether the user should be alerted or not
-	return std::string("<div class=\"jaspReport jaspReport") + (_report ? "Do" : "Dont") + "\">\n" + htmlTitle() + "\n<p>" + jaspHtml::sanitizeTextForHtml(_rawText) + "</p></div>";
+	return std::string(
+		"<div class=\"jaspReport jaspReport") + 
+		(_report ? "Do" : "Dont") + "\"><p>" + jaspHtml::sanitizeTextForHtml(_rawText) + "</p></div>";
 }
 
 Json::Value jaspReport::dataEntry(std::string & errorMessage) const
