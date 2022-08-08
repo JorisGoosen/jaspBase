@@ -395,12 +395,12 @@ jaspReportR <- R6::R6Class(
 			if (!is.null(jaspObject)) {
 			  private$jaspObject <- jaspObject
 			  return()
-			} else if (jaspResultsCalledFromJasp()) {
-				reportObj <- jaspResultsModule$create_cpp_jaspReport(text)
+			#} else if (jaspResultsCalledFromJasp()) {
+			#	reportObj <- jaspResultsModule$create_cpp_jaspReport(text)
 			} else {
 				checkForJaspResultsInit()
 				reportObj <- create_cpp_jaspReport(text)
-			}*
+			}
 
 			reportObj$title  <- title
 			reportObj$report <- report
