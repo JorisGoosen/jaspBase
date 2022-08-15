@@ -372,7 +372,10 @@ const char * jaspResults::constructResultJson()
 	}
 
 	static std::string msg;
-	msg = _response.toStyledString();
+	Json::StreamWriterBuilder builder;
+	builder["precision"] = 5;
+
+	msg = Json::writeString(builder, _response) + "\n";
 
 #ifdef JASP_RESULTS_DEBUG_TRACES
 	std::cout << "Result JSON:\n" << msg << "\n\n" << std::flush;
