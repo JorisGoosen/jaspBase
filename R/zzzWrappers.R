@@ -113,7 +113,7 @@ createJaspHtml <- function( text = "",    elementType = "p",         maxWidth = 
   return(jaspHtmlR$new(   text = text,  elementType = elementType, maxWidth = maxWidth, class = class, dependencies = dependencies, title = title,     position = position))
 
 #' @export
-createJaspReport <- function( text = "",    report = FALSE, dependencies = NULL,         title = "hide me", position = NULL)
+createJaspReport <- function( text = "",    report = FALSE,  dependencies = NULL,         title = "",        position = NULL)
     return(jaspReportR$new(   text = text,  report = report, dependencies = dependencies, title = title,     position = position))
 
 #' @export
@@ -390,7 +390,7 @@ jaspReportR <- R6::R6Class(
 	inherit   = jaspOutputObjR,
 	cloneable = FALSE,
 	public    = list(
-	initialize = function(text="", report=FALSE, dependencies=NULL, title="hide me", position=NULL , info=NULL, jaspObject = NULL) {
+	initialize = function(text="", report=FALSE, dependencies=NULL, title="", position=NULL , info=NULL, jaspObject = NULL) {
 			# if you change "hide me" here then also change it in Common.R and in HtmlNode.js or come up with a way to define it in such a way to make it show EVERYWHERE...
 			if (!is.null(jaspObject)) {
 			  private$jaspObject <- jaspObject
