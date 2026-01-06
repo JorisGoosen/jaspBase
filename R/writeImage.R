@@ -133,11 +133,12 @@ print("Trying to do the interactive thing now")
 
     if (exists(".fromRCPP")) {
         locationPlotly  <- .fromRCPP(".requestTempFileNameNative", "ply")
+        fullPathPlotly                    <- paste(locationPlotly$root, locationPlotly$relativePath, sep="/")
 
-        print("locationPlotly:")
-        print(locationPlotly)
+        print("fullPathPlotly:")
+        print(fullPathPlotly)
 
-        plotlyJsonFile <- file(locationPlotly)
+        plotlyJsonFile <- file(fullPathPlotly)
 
         if(inherits(jsonOrTryError, "try-error")) {
             writeLines(toJSON(list(error=gettextf("The following error occured while converting a ggplot to plotly: %s", jsonOrTryError$message))), plotlyJsonFile)
