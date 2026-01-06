@@ -137,7 +137,7 @@ print("Trying to do the interactive thing now")
           image[["interactiveConvertError"]] = gettextf("The following error occured while converting a ggplot to plotly: %s", jsonOrTryError$message)
         }
         else {
-          locationPlotly  <- .fromRCPP(".requestTempFileNameNative", "ply")
+          locationPlotly  <- .fromRCPP(".requestTempFileNameNative", "json")
 
           print("locationPlotly:")
           print(locationPlotly)
