@@ -127,10 +127,21 @@ writeImageJaspResults <- function(plot, width = 320, height = 320, obj = TRUE, r
 
     jsonOrTryError <- jaspGraphs::convertGgplotToPlotly(plot)
 
-    if (inherits(jsonOrTryError, "try-error"))
-      image[["interactiveConvertError"]] <- gettextf("The following error occured while converting a ggplot to plotly: %s", jsonOrTryError$message)
-    else
-      image[["interactiveJsonData"]] <- jsonOrTryError
+    if (exists(".fromRCPP")) {
+        locationPlotly  <- .fromRCPP(".requestTempFileNameNative", "ply")
+
+        plotlyJsonFile <- file(locationPlotly)
+
+        if(inherits(jsonOrTryError, "try-error")) {
+            writeLines(toJSON(list(error=gettextf("The following error occured while converting a ggplot to plotly: %s", jsonOrTryError$message))), plotlyJsonFile)
+        }
+        else {
+          writeLines(jsonOrTryError, plotlyJsonFile)
+        }
+        close(plotlyJsonFile)
+    }
+
+      image[["interactiveJsonData"]] <- locationPlotly
   }
 
   return(image)
