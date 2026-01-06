@@ -122,13 +122,20 @@ writeImageJaspResults <- function(plot, width = 320, height = 320, obj = TRUE, r
 
   image[["editOptions"]] <- jaspGraphs::plotEditingOptions(plot, asJSON = TRUE)
 
+print("Trying to do the interactive thing now")
   image[["interactive"]] <- ggplot2::is.ggplot(plot)
   if (image[["interactive"]] ) {
 
     jsonOrTryError <- jaspGraphs::convertGgplotToPlotly(plot)
 
+    print("jsonOrTryError:")
+    print(jsonOrTryError)
+
     if (exists(".fromRCPP")) {
         locationPlotly  <- .fromRCPP(".requestTempFileNameNative", "ply")
+
+        print("locationPlotly:")
+        print(locationPlotly)
 
         plotlyJsonFile <- file(locationPlotly)
 
@@ -138,10 +145,12 @@ writeImageJaspResults <- function(plot, width = 320, height = 320, obj = TRUE, r
         else {
           writeLines(jsonOrTryError, plotlyJsonFile)
         }
+        print("Closing connection now")
+
         close(plotlyJsonFile)
     }
 
-      image[["interactiveJsonData"]] <- locationPlotly
+    image[["interactiveJsonData"]] <- locationPlotly
   }
 
   return(image)
