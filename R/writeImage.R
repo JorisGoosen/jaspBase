@@ -154,10 +154,11 @@ print("Trying to do the interactive thing now")
 
           close(plotlyJsonFile)
 
+          image[["interactiveJsonData"]] <- locationPlotly$relativePath
         }
     }
 
-    image[["interactiveJsonData"]] <- locationPlotly
+    
   }
 
   return(image)
